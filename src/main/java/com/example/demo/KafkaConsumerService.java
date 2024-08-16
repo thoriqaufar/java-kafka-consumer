@@ -20,14 +20,10 @@ public class KafkaConsumerService {
 
     @KafkaListener(topics = "transaction", groupId = "java")
     public void listen(String message, @Header(KafkaHeaders.RECEIVED_TOPIC) String topic) {
-//        String mockbinUrl = "https://d702a2b011f04e6390b083e529ecccaf.api.mockbin.io/";
-        String mockbinUrl = "https://d702a2b011f04e639ad0b083e529ecccaf.api.mockbin.io/";
-//        String mockbinUrl = "https://62843350f6494aa285f590f58ed6ef43.api.mockbin.io/";
+        String mockbinUrl = "your_mockbin_url";
         try {
-
             restTemplate.postForObject(mockbinUrl, message, String.class);
         } catch (Exception e) {
-//            kafkaTemplate.send(topic, message);
             System.out.println(e.getMessage());
         }
 
